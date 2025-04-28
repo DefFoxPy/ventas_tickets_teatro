@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,16 +28,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Configuración para los usuarios
+AUTH_USER_MODEL = 'usuarios.Usuario' 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "usuarios.apps.UsuariosConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "tickets",
 ]
 
 MIDDLEWARE = [
@@ -121,3 +126,12 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Configuración de autenticación
+LOGIN_URL = '/usuarios/login/'
+LOGIN_REDIRECT_URL = '/eventos/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Archivos multimedia
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

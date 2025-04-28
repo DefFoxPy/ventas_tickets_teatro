@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="perfil-header">
+	
+	<h1>{{ user.get_full_name }}</h1>
+</div>
+
+<div class="perfil-selecciones">
+	<section>
+		<h3>Información Personal</h3>
+		<p>Email: {{ user.email }}</p>
+		<p>Teléfono: {{ user.telefono }}</p>
+		<a href="{% url 'usuarios:editar_perfil' %}">Editar perfil</a>
+	</section>
+
+	<section>
+		<h3>Mis Tickets</h3>
+		<!-- Lista de tickets comprados -->
+	</section>
+
+	{% if user.es_organizador %}
+	<section>
+		<h3>Mis eventos</h3>
+		<!-- Lista de eventos creados -->
+	</section>
+	{% endif %}
+</div>
+{% endblock %}
